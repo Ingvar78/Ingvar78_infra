@@ -6,7 +6,8 @@ Ingvar78 Infra repository
 ```
 bastion_IP = 84.201.157.40
 someinternalhost_IP = 10.130.0.21
-
+testapp_IP = 84.201.130.72
+testapp_port = 9292
 ```
 
 <h2> 5.1 Самостоятельное задание </h2>
@@ -44,8 +45,3 @@ Pritunl имеет встроенную интеграцию с Let's encrypt.
 Lets Encrypt Domain ``https://84-201-157-40.sslip.io/``
 
 <h1> 6. Основные сервисы Yandex Cloud
-
-```
-testapp_IP = 84.201.130.72
-testapp_port = 9292
-```
