@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Install Git"
-sudo apt-get install -y git
+sudo apt-get install -y git apt-transport-https
 
 echo "Install Reddit"
 
