@@ -42,3 +42,10 @@ Pritunl имеет встроенную интеграцию с Let's encrypt.
 Сертификат сгенерируется автоматически на стороне сервиса sslip.io и привяжется к FQDN.
 ```
 Lets Encrypt Domain ``https://84-201-157-40.sslip.io/``
+
+<h1> 6. Основные сервисы Yandex Cloud
+
+```
+testapp_IP = 84.201.130.72
+testapp_port = 9292
+```
