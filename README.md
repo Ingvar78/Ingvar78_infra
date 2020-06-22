@@ -6,7 +6,8 @@ Ingvar78 Infra repository
 ```
 bastion_IP = 84.201.157.40
 someinternalhost_IP = 10.130.0.21
-
+testapp_IP = 84.201.130.72
+testapp_port = 9292
 ```
 
 <h2> 5.1 Самостоятельное задание </h2>
@@ -42,3 +43,15 @@ Pritunl имеет встроенную интеграцию с Let's encrypt.
 Сертификат сгенерируется автоматически на стороне сервиса sslip.io и привяжется к FQDN.
 ```
 Lets Encrypt Domain ``https://84-201-157-40.sslip.io/``
+
+<h1> 6. Основные сервисы Yandex Cloud </h1>
+
+```
+yc compute instance create \
+  --name reddit-app1 \
+  --hostname reddit-app1 \
+  --memory=4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --metadata-from-file user-data=./reddit.yaml
+```
