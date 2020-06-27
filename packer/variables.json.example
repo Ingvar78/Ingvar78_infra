@@ -1,5 +1,5 @@
 {
-    "service_account_key_file": "files/key.json",
-    "folder_id": "YC_FOLDER_ID",
-    "source_image_family": "OS_IMG_NAME"
+    "yc_service_account_key_file": "files/key.json",
+    "yc_folder_id": "b1gekrrielbmteicvonh",
+    "yc_source_image_family": "ubuntu-1604-lts"
 }
