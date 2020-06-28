@@ -55,3 +55,36 @@ yc compute instance create \
   --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
   --metadata-from-file user-data=./reddit.yaml
 ```
+
+<h1> 7. Модели управления инфраструктурой. Подготовка образов с помощью Packer  </h1>
+<h2> 7.1 Сборка образов VM при помощи Packer</h2>
+
+Создан шаблон "ubuntu16.json" для создания образа
+
+Добавлены провиженеры rubby и mongodb
+
+Создан образа. В процессе сборки образа  добавлена ("use_ipv4_nat": true), и таймауты запуска скриптов ("pause_before": "60s")
+
+Создан инстанс на основе образа. Выполнен деплой reddit приложения с использованием скрипта из предыдущего задания
+
+<h2> 7.2 Самостоятельные задания </h2> 
+
+Выполнена параметризация шаблона (variables.json)
+
+```
+  packer build -var-file=variables.json ./ubuntu16.json
+```
+
+<h2> 7.3 Дополнительные задания </h2>
+
+В шаблон добавлены дополнителный "provisioners" для деплоя приложения reddit, cоздан образ на основе базового
+
+Сбокра образа:
+
+```
+  packer build -var-file=variables.json ./immutable.json
+```
+
+Создан скрипт create-reddit-vm.sh
+
+Проверка работы http://84.201.131.37:9292/
