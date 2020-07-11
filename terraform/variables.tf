@@ -19,15 +19,32 @@ variable image_id {
 variable subnet_id {
   description = "Subnet"
 }
+variable network_id {
+  description = "Network ID"
+}
 variable service_account_key_file {
   description = "key .json"
 }
-
 variable private_key_path {
   description = "Path to Private Key File"
 }
-
 variable app_instances_count {
   description = "instances count"
-  default     = 3
+  default     = 1
+}
+variable app_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-app-base"
+}
+variable db_disk_image {
+  description = "Disk image for reddit db"
+  default     = "reddit-db-base"
+}
+variable vCores_count {
+  description = "vCores count"
+  default     = 2
+}
+variable memory_size {
+  description = "Memory RAM in GB"
+  default     = 2
 }
