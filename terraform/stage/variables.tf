@@ -48,3 +48,12 @@ variable memory_size {
   description = "Memory RAM in GB"
   default     = 2
 }
+variable storage_access_key {
+  description = "access_key id"
+}
+variable storage_secret_key {
+  description = "secret key"
+}
+variable storage_sa_id {
+  description = "SERVICE ACCOUNT ID"
+}
