@@ -34,7 +34,7 @@ resource "yandex_compute_instance" "app" {
   }
 
   provisioner "file" {
-    source      = "./files/puma.service"
+    source      = "../files/puma.service"
     destination = "/tmp/puma.service"
   }
 
@@ -45,7 +45,7 @@ resource "yandex_compute_instance" "app" {
   }
 
   provisioner "remote-exec" {
-    script = "./files/deploy.sh"
+    script = "../files/deploy.sh"
   }
 
 }
