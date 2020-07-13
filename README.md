@@ -156,7 +156,16 @@ $ terraform plan
 $ terraform apply -auto-approve
 $ terraform destroy -auto-approve
 ```
+<h2> 10.3 Удалённое хранение стэйта </h2>
 
-TODO: Выполнить задания со * 
-TODO: Удалённое хранение стэйта
+Для генерации/просмотра ключей воспользоваться командой
 
+```
+yc iam access-key create --service-account-name <name_sa> --description "this key is for my bucket" 
+yc iam access-key list --service-account-name <name_sa>
+
+```
+
+Добавлен storage-bucket.tf, backend.tf
+
+TODO: Выполнить задания со *
