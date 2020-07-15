@@ -126,3 +126,45 @@ reddit-balancer-address = [
   "84.201.159.22",
 ]
 ```
+
+<h1> 10. Создание Terraform модулей для управления компонентами инфраструктуры. </h1>
+
+Дла новых шаблона db.json и app.json для создания образа ВМ с предустановленными mongodb и ruby
+
+```
+packer build -var-file=variables.json ./app.json
+packer build -var-file=variables.json ./db.json
+```
+
+<h2> 10.1 Модули </h2>
+
+Конфигурация терраформа разбита на модули:
+    app - для развертывания приложения
+    db - для базы данных
+    vpc - для сети
+
+<h2> 10.2 Переиспользование модулей </h2>
+Созданы 2 окружения stage и prod, использующие модули db. app и vpc
+
+Для загрузки модулей выполнить: terraform get
+
+Для деплоя необходимо из соответствующей директории (stage или prod) выполнить:
+
+```
+$ terraform init
+$ terraform plan
+$ terraform apply -auto-approve
+$ terraform destroy -auto-approve
+```
+<h2> 10.3 Удалённое хранение стэйта </h2>
+
+Для генерации/просмотра ключей воспользоваться командой
+
+```
+yc iam access-key create --service-account-name <name_sa> --description "this key is for my bucket"
+yc iam access-key list --service-account-name <name_sa>
+```
+
+Добавлен storage-bucket.tf, backend.tf
+
+TODO: Выполнить задания со *
