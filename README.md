@@ -181,11 +181,11 @@ clone.yml - простой плейбук из ДЗ
 
 inventory - статический инвентори
 
-inventory.sh - динамический инвентори с данными из terraform
+inventory.sh - динамический инвентори с данными из YC
 
 inventory.yml - статический инвентори в формвте YML
 
-inventory_yc.sh динамический инвентори с данными из YC
+inventory_tf.sh динамический инвентори с данными из terraform
 
 requirements.txt - файл для установки ansible
 

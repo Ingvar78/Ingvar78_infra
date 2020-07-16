@@ -1,30 +1,28 @@
 #!/bin/bash
 
 if [ "$1" = "--list" ]; then
-    cd ../terraform/stage > /dev/null
-    APP_IP=$(terraform output external_ip_address_app)
-    DB_IP=$(terraform output external_ip_address_db)
-    cd - > /dev/null
+    APP_IP=$(yc compute instance get reddit-app --format json | jq '.network_interfaces[].primary_v4_address.one_to_one_nat.address'| tr -d \")
+    DB_IP=$(yc compute instance get reddit-db --format json | jq '.network_interfaces[].primary_v4_address.one_to_one_nat.address'| tr -d \")
     cat << _EOF_
     {
         "_meta": {
             "hostvars": {
-                "appserver": {
+                "appserver_yc": {
                     "ansible_host": "${APP_IP}"
                 },
-                "dbserver": {
+                "dbserver_yc": {
                     "ansible_host": "${DB_IP}"
                 }
             }
         },
         "app": {
             "hosts": [
-                "appserver"
+                "appserver_yc"
             ]
         },
         "db": {
             "hosts": [
-                "dbserver"
+                "dbserver_yc"
             ]
         }
     }
