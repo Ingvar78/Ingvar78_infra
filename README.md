@@ -168,3 +168,35 @@ yc iam access-key list --service-account-name <name_sa>
 Добавлен storage-bucket.tf, backend.tf
 
 TODO: Выполнить задания со *
+
+<h1> 11. Управление конфигурацией. Знакомство с Ansible </h1>
+
+Установлен Ansible, изучены базовые функциями и инвентори.
+
+Созданы и настроены файлы конфигурации Ansible:
+
+ansible.cfg - конфигурационный файл
+
+clone.yml - простой плейбук из ДЗ
+
+inventory - статический инвентори
+
+inventory.sh - динамический инвентори с данными из terraform
+
+inventory.yml - статический инвентори в формвте YML
+
+inventory_yc.sh динамический инвентори с данными из YC
+
+requirements.txt - файл для установки ansible
+
+При первом вызове плэйбука происходит изменение хоста (changed=1), при последующих запусках изменений не происходит (changed=0) т.к. шаг уже выполнен.
+
+```
+$  ansible-playbook clone.yml
+```
+при составлении динамического инвентори использовались следующие команды terraform и YC:
+
+```
+$ terraform output  external_ip_address_app
+$ yc compute instance get reddit-app --format json
+```
