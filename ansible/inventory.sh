@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$1" = "--list" ]; then
-    APP_IP=$(yc compute instance get reddit-app --format json | jq '.network_interfaces[].primary_v4_address.one_to_one_nat.address'| tr -d \")
-    DB_IP=$(yc compute instance get reddit-db --format json | jq '.network_interfaces[].primary_v4_address.one_to_one_nat.address'| tr -d \")
+    APP_IP=$(yc compute instance list | grep reddit-app | awk '{print $4,$10}'| awk '{print $2}')
+    DB_IP=$(yc compute instance list | grep reddit-db | awk '{print $4,$10}'| awk '{print $2}')
     cat << _EOF_
     {
         "_meta": {
