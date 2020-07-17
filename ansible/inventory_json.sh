@@ -10,26 +10,24 @@ if [ "$1" = "--list" ]; then
     cd - > /dev/null
     cat << _EOF_
 {
-    "_meta": {
-        "hostvars": {
-            "appserver": {
-                "ansible_host": "${APP_IP}"
-            },
-            "dbserver": {
-                "ansible_host": "${DB_IP}"
-            }
+  "all": {
+    "children": {
+      "app": {
+        "hosts": {
+          "appserver": {
+            "ansible_host": "${APP_IP}"
+          }
         }
-    },
-    "app": {
-        "hosts": [
-            "appserver"
-        ]
-    },
-    "db": {
-        "hosts": [
-            "dbserver"
-        ]
+      },
+      "db": {
+        "hosts": {
+          "dbserver": {
+            "ansible_host": "${APP_IP}"
+          }
+        }
+      }
     }
+  }
 }
 _EOF_
 else
