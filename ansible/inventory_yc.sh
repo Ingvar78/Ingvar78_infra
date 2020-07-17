@@ -1,33 +1,28 @@
 #!/bin/bash
 
 if [ "$1" = "--list" ]; then
-    cd ../terraform/stage > /dev/null
-    APP_IP=$( terraform show | grep external_ip_address_app | sed 's/\x1b\[[0-9;]*[a-zA-Z]//g' |awk '{print $3}' | tr -d \")
-    DB_IP=$( terraform show | grep external_ip_address_db | sed 's/\x1b\[[0-9;]*[a-zA-Z]//g' |awk '{print $3}' | tr -d \")
-
-#    APP_IP=$(terraform output external_ip_address_app)
-#    DB_IP=$(terraform output external_ip_address_db)
-    cd - > /dev/null
+    APP_IP=$(yc compute instance list | grep reddit-app | awk '{print $4,$10}'| awk '{print $2}')
+    DB_IP=$(yc compute instance list | grep reddit-db | awk '{print $4,$10}'| awk '{print $2}')
     cat << _EOF_
     {
         "_meta": {
             "hostvars": {
-                "appserver": {
+                "appserver_yc": {
                     "ansible_host": "${APP_IP}"
                 },
-                "dbserver": {
+                "dbserver_yc": {
                     "ansible_host": "${DB_IP}"
                 }
             }
         },
         "app": {
             "hosts": [
-                "appserver"
+                "appserver_yc"
             ]
         },
         "db": {
             "hosts": [
-                "dbserver"
+                "dbserver_yc"
             ]
         }
     }
