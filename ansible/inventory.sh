@@ -34,16 +34,16 @@ if [ "$1" = "--list" ]; then
 _EOF_
 else
     cat << _EOF_
-    {
-        "_meta": {
-                "hostvars": {}
-        },
-        "all": {
-                "children": [
-                        "ungrouped"
-                ]
-        },
-        "ungrouped": {}
-    }
+{
+    "_meta": {
+            "hostvars": {}
+    },
+    "all": {
+            "children": [
+                    "ungrouped"
+            ]
+    },
+    "ungrouped": {}
+}
 _EOF_
 fi
