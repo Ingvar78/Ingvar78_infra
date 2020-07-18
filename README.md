@@ -196,6 +196,7 @@ $  ansible-playbook clone.yml
 ```
 при составлении динамического инвентори использовались следующие команды terraform и YC:
 
+ Не проходит тест со * 
 ```
 $ terraform output  external_ip_address_app
 $ yc compute instance get reddit-app --format json
