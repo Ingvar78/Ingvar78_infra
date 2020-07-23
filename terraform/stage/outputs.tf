@@ -6,7 +6,7 @@
 #}
 # for ansible
 output "inventory" {
-value = <<INVENTORY
+  value = <<INVENTORY
 { "_meta": {
         "hostvars": { }
     },
