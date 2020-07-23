@@ -202,15 +202,15 @@ $ terraform output  external_ip_address_app
 $ yc compute instance get reddit-app --format json
 ```
 
-<h1> 9. Управление настройками хостов и деплой приложения при помощи Ansible. </h1>
+<h1> 12. Управление настройками хостов и деплой приложения при помощи Ansible. </h1>
 
-<h2> 9.1 Один playbook, один сценарий</h2> 
+<h2> 12.1 Один playbook, один сценарий</h2> 
 
 Использованы плейбуки, хендлеры и шаблоны для конфигурации окружения и деплоя тестового приложения. Подход один плейбук, один сценарий 
 
 reddit_app_one_play.yml
 
-<h2> 9.2 Один плейбук, несколько сценариев / Несколько плейбуков</h2> 
+<h2> 12.2 Один плейбук, несколько сценариев / Несколько плейбуков</h2> 
 
 reddit_app_multiple_play.yml
 
@@ -218,7 +218,7 @@ reddit_app_multiple_play.yml
 
 Создан основной плейбук site.yml, который включает в себя остальные db.yml, app.yml, deploy.yml
 
-<h2> 9.3 Провижининг в Packer. </h2>
+<h2> 12.3 Провижининг в Packer. </h2>
 
 Изменены packer/db.json, packer/app.json - вместо shell/command используем модули ansible: 
 
