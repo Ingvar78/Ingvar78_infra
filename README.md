@@ -201,3 +201,89 @@ $  ansible-playbook clone.yml
 $ terraform output  external_ip_address_app
 $ yc compute instance get reddit-app --format json
 ```
+
+<h1> 9. Управление настройками хостов и деплой приложения при помощи Ansible. </h1>
+
+<h2> 9.1 Один playbook, один сценарий</h2> 
+
+Использованы плейбуки, хендлеры и шаблоны для конфигурации окружения и деплоя тестового приложения. Подход один плейбук, один сценарий 
+
+reddit_app_one_play.yml
+
+<h2> 9.2 Один плейбук, несколько сценариев / Несколько плейбуков</h2> 
+
+reddit_app_multiple_play.yml
+
+Аналогично один плейбук, но много сценариев и много плейбуков.
+
+Создан основной плейбук site.yml, который включает в себя остальные db.yml, app.yml, deploy.yml
+
+<h2> 9.3 Провижининг в Packer. </h2>
+
+Изменены packer/db.json, packer/app.json - вместо shell/command используем модули ansible: 
+
+packer_db.yml - добавляет репозиторий MongoDB
+
+packer_app.yml - устанавливает Ruby и Bundler
+
+билд образов через пакер:
+
+```
+packer validate -var-file=packer/variables.json.example packer/app.json
+packer build -var-file=variables.json app.json
+packer validate -var-file=packer/variables.json.example packer/db.json
+packer build -var-file=variables.json db.json
+```
+
+Созданы новые образы reddit-app-base и reddit-db-base из которых развернуто приложение с применением site.yml и динамического inventory.
+Backend - работает, в БД сообщения сохраняет.
+
+```
+#output "external_ip_address_app" {
+#  value = module.app.external_ip_address_app
+#}
+#output "external_ip_address_db" {
+#  value = module.db.external_ip_address_db
+#}
+# for ansible
+output "inventory" {
+  value = <<INVENTORY
+{ "_meta": {
+        "hostvars": { }
+    },
+  "app": {
+    "hosts": ["${module.app.external_ip_address_app}"]
+  },
+  "db": {
+    "hosts": ["${module.db.external_ip_address_db}"],
+    "vars": {
+        "private_ip": "${module.db.internal_ip_address_db}"
+    }
+  }
+}
+    INVENTORY
+}
+```
+
+Шаблон с динамической переменной из inventory templates/db_config_din.j2:
+
+```
+DATABASE_URL={{ hostvars[groups['db'][0]]['private_ip'] }}
+```
+
+ansible.cfg с динамическим инвентори:
+
+```
+[defaults]
+inventory = ./inventory.sh
+remote_user = ubuntu
+private_key_file = ~/.ssh/ubuntu
+host_key_checking = False
+retry_files_enabled = False
+show_custom_stats = yes
+deprecation_warnings=False
+```
+
+команда ansible для накатки конфигурации:
+ansible-playbook site.yml
+

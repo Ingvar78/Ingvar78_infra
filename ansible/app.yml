@@ -13,7 +13,7 @@
 
     - name: Add config for DB connection
       template:
-        src: templates/db_config.j2
+        src: templates/db_config_din.j2
         dest: /home/ubuntu/db_config
         owner: ubuntu
         group: ubuntu
