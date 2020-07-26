@@ -287,3 +287,16 @@ deprecation_warnings=False
 команда ansible для накатки конфигурации:
 ansible-playbook site.yml
 
+
+<h1> 13. Ansible: работа с ролями и окружениями </h1>
+
+<h2>13.1 Ansible Galaxy </h2>
+
+<h2>13.2 Окружения </h2>
+
+<h2>13.3 Inventory File </h2>
+
+<h2>13.4 Работа с Community-ролями </h2>
+
+<h2>13.5 Работа с Ansible Vault </h2>
+
