@@ -57,3 +57,11 @@ variable storage_secret_key {
 variable storage_sa_id {
   description = "SERVICE ACCOUNT ID"
 }
+variable "postfix_name" {
+  description = "Postfix to name of enviroment"
+  default     = ""
+}
+variable "v4_cidr_blocks" {
+  description = "v4_cidr_block for env"
+  default     = ["10.10.1.0/24"]
+}

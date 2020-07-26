@@ -14,3 +14,7 @@ variable public_key_path {
   description = "Path to public key used for ssh access"
   default     = "~/.ssh/ubuntu.pub"
 }
+variable "postfix_name" {
+  description = "Postfix to name of enviroment"
+  default     = ""
+}

@@ -1,5 +1,5 @@
 resource "yandex_compute_instance" "db" {
-  name = "reddit-db"
+  name = "reddit-db-${var.postfix_name}"
   labels = {
     tags = "reddit-db"
   }
@@ -33,10 +33,10 @@ resource "yandex_compute_instance" "db" {
     private_key = file(var.private_key_path)
   }
 
-#  provisioner "remote-exec" {
-#    inline = [
-#      "sudo sed -i -e 's/127.0.0.1/127.0.0.1,${yandex_compute_instance.db.network_interface.0.ip_address}/g' /etc/mongod.conf",
-#      "sudo systemctl restart mongod"
-#    ]
-#  }
+  #  provisioner "remote-exec" {
+  #    inline = [
+  #      "sudo sed -i -e 's/127.0.0.1/127.0.0.1,${yandex_compute_instance.db.network_interface.0.ip_address}/g' /etc/mongod.conf",
+  #      "sudo systemctl restart mongod"
+  #    ]
+  #  }
 }

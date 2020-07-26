@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = "--list" ]; then
-    cd ../../../terraform/prod > /dev/null
+    cd ../terraform/prod > /dev/null
     terraform output inventory
     cd - > /dev/null
 else

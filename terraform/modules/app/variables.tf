@@ -32,3 +32,8 @@ variable public_key_path {
 variable db_ip {
   description = "db ip-address"
 }
+
+variable "postfix_name" {
+  description = "Postfix to name of enviroment"
+  default     = ""
+}
