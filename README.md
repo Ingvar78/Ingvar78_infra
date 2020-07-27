@@ -290,13 +290,29 @@ ansible-playbook site.yml
 
 <h1> 13. Ansible: работа с ролями и окружениями </h1>
 
-<h2>13.1 Ansible Galaxy </h2>
+<h1> 13. Ansible: работа с ролями и окружениями </h1>
 
-<h2>13.2 Окружения </h2>
+Изучена работа с  Ansible Galaxy, Vault и инструментами тестрирования.
 
-<h2>13.3 Inventory File </h2>
+Изучена работа с ролями.
 
-<h2>13.4 Работа с Community-ролями </h2>
+Перенесены созданные плейбуки в раздельные роли. Описаны два окружения stage и prod	
 
-<h2>13.5 Работа с Ansible Vault </h2>
+Использован Ansible Vault для шифрования переменных окружений.
+
+Для проксирования добалена коммьюнити роль nginx.
+
+Добавлен  плейбук для создания пользователей - файл ansible/playbooks/users.yml, создан файл ключа vault_password_file = ~/Documents/Otus/ansible/vault.key - не храниться в репозитории.
+
+Создан файл с данными пользователей credentials.yml для каждого environments stage\prod, произведено шифрование credentials.yml ранее созданный vault.key.
+
+При выове плейбука site.yml будут созданы пользователи в соответствии со списком пользователей в credentials.yml, авторизация по логину/паролю на создаваемых хостах.
+
+Скрипты для динамического inventory: inventory.sh  добавлены в ansible/environments/stage, ansible/environments/prod. переработано создание хостов из terraform, для разделения на stage и prod путём добавления переменной postfix_name и разделения по сетям.
+
+В ansible.cfg добавлено:
+```
+[defaults]
+inventory = ./environments/stage/inventory.sh
+```
 
