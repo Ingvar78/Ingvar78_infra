@@ -318,3 +318,14 @@ ansible-playbook site.yml
 inventory = ./environments/stage/inventory.sh
 ```
 
+<h2> ** Настройка TravisCI </h2>
+
+валидаторы ansible, packer, terraform выполняются:
+```
+./test/packer_validate.sh
+./test/ansible_validate.sh
+./test/packer_validate.sh
+
+```
+
+в README.md добавлен бейдж со статусом билда
