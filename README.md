@@ -1,6 +1,8 @@
 # Ingvar78_infra
 Ingvar78 Infra repository
 
+[![Build Status](https://travis-ci.com/Otus-DevOps-2020-05/Ingvar78_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2020-05/Ingvar78_infra)
+
 <h1> 5. ДЗ Знакомство с облачной инфраструктурой. Yandex.Cloud </h1>
 
 ```
