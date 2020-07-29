@@ -1,6 +1,8 @@
 # Ingvar78_infra
 Ingvar78 Infra repository
 
+[![Build Status](https://travis-ci.com/Otus-DevOps-2020-05/Ingvar78_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2020-05/Ingvar78_infra)
+
 <h1> 5. ДЗ Знакомство с облачной инфраструктурой. Yandex.Cloud </h1>
 
 ```
@@ -287,3 +289,43 @@ deprecation_warnings=False
 команда ansible для накатки конфигурации:
 ansible-playbook site.yml
 
+
+<h1> 13. Ansible: работа с ролями и окружениями </h1>
+
+<h1> 13. Ansible: работа с ролями и окружениями </h1>
+
+Изучена работа с  Ansible Galaxy, Vault и инструментами тестрирования.
+
+Изучена работа с ролями.
+
+Перенесены созданные плейбуки в раздельные роли. Описаны два окружения stage и prod	
+
+Использован Ansible Vault для шифрования переменных окружений.
+
+Для проксирования добалена коммьюнити роль nginx.
+
+Добавлен  плейбук для создания пользователей - файл ansible/playbooks/users.yml, создан файл ключа vault_password_file = ~/Documents/Otus/ansible/vault.key - не храниться в репозитории.
+
+Создан файл с данными пользователей credentials.yml для каждого environments stage\prod, произведено шифрование credentials.yml ранее созданный vault.key.
+
+При выове плейбука site.yml будут созданы пользователи в соответствии со списком пользователей в credentials.yml, авторизация по логину/паролю на создаваемых хостах.
+
+Скрипты для динамического inventory: inventory.sh  добавлены в ansible/environments/stage, ansible/environments/prod. переработано создание хостов из terraform, для разделения на stage и prod путём добавления переменной postfix_name и разделения по сетям.
+
+В ansible.cfg добавлено:
+```
+[defaults]
+inventory = ./environments/stage/inventory.sh
+```
+
+<h2> ** Настройка TravisCI </h2>
+
+валидаторы ansible, packer, terraform выполняются:
+```
+./test/packer_validate.sh
+./test/ansible_validate.sh
+./test/packer_validate.sh
+
+```
+
+в README.md добавлен бейдж со статусом билда

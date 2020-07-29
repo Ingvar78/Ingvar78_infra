@@ -1,5 +1,5 @@
 resource "yandex_compute_instance" "app" {
-  name = "reddit-app"
+  name = "reddit-app-${var.postfix_name}"
 
   labels = {
     tags = "reddit-app"
@@ -33,19 +33,19 @@ resource "yandex_compute_instance" "app" {
     private_key = file(var.private_key_path)
   }
 
-#  provisioner "file" {
-#    source      = "../files/puma.service"
-#    destination = "/tmp/puma.service"
-#  }
+  #  provisioner "file" {
+  #    source      = "../files/puma.service"
+  #    destination = "/tmp/puma.service"
+  #  }
 
-#  provisioner "remote-exec" {
-#    inline = [
-#      "echo export DATABASE_URL=${var.db_ip} >> ~/.profile",
-#    ]
-#  }
+  #  provisioner "remote-exec" {
+  #    inline = [
+  #      "echo export DATABASE_URL=${var.db_ip} >> ~/.profile",
+  #    ]
+  #  }
 
-#  provisioner "remote-exec" {
-#    script = "../files/deploy.sh"
-#  }
+  #  provisioner "remote-exec" {
+  #    script = "../files/deploy.sh"
+  #  }
 
 }
