@@ -9,3 +9,6 @@
     dest: /etc/mongod.conf
     mode: 0644
   notify: restart mongod
+
+- include: install_mongo.yml
+- include: config_mongo.yml

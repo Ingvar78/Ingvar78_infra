@@ -1,10 +1,3 @@
----
-- name: Install MongoDB 4.2
-  hosts: all
-  vars:
-    mongo_bind_ip: 0.0.0.0
-  become: true
-  tasks:
   # обновим ппакеты
   - name: Upgrade apt packages
     become: true
