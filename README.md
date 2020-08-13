@@ -439,3 +439,29 @@ inventory = ./environments/stage/inventory.sh
     PLAY RECAP *********************************************************************
     <font color="#C4A000">instance</font>                   : <font color="#4E9A06">ok=9   </font> <font color="#C4A000">changed=7   </font> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 </pre>
+
+
+<h3> Прогон ранее созданных тестов </h3>
+
+<pre>
+<font color="#4E9A06">iva@c8hard </font><font color="#CC0000">db (ansible-4 *=) </font><font color="#729FCF"><b>$</b></font><font color="#4E9A06"> molecule verify</font>
+<font color="#4E9A06">--&gt; </font><font color="#06989A">Test matrix</font>
+
+└── default
+    └── verify
+
+--&gt; <font color="#06989A">Scenario: &apos;default&apos;</font>
+--&gt; <font color="#06989A">Action: &apos;verify&apos;</font>
+--&gt; <font color="#06989A">Executing Testinfra tests found in /home/iva/Documents/Otus/Ingvar78_infra/ansible/roles/db/molecule/default/tests/...</font>
+    <b>============================= test session starts ==============================</b>
+    platform linux -- Python 3.6.8, pytest-6.0.1, py-1.9.0, pluggy-0.13.1
+    rootdir: /home/iva/Documents/Otus/Ingvar78_infra/ansible/roles/db/molecule/default
+    plugins: testinfra-5.2.2
+<b>collected 3 items                                                              </b>
+
+    tests/test_default.py <font color="#4E9A06">...                                                [100%]</font>
+
+    <font color="#4E9A06">============================== </font><font color="#8AE234"><b>3 passed</b></font><font color="#4E9A06"> in 3.79s ===============================</font>
+<font color="#4E9A06">Verifier completed successfully.</font>
+</pre>
+
