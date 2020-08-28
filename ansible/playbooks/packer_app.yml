@@ -1,24 +1,6 @@
 ---
 - name: Install Ruby && Bundler
-  hosts: all
+  hosts: app
   become: true
-  tasks:
-  # Установим в цикле все зависимости.
-  - name: Upgrade apt packages
-    become: true
-    apt: upgrade=yes update_cache=yes cache_valid_time=86400
-  - name: Install ruby and rubygems and required packages
-    become: true
-    apt: name="{{ item }}" state=present update_cache=yes
-    loop: "{{  ['ruby-full', 'ruby-bundler', 'build-essential']  }}"
-# старый метод не работает
-# Changing ansible loop due to v2.11 deprecation 
-# Invoking "apt" only once while using a loop via squash_actions is deprecated. 
-# Instead of using a loop to supply multiple items and specifying `name: "{{ item }}"`, please use `name: ['ruby-full', 'ruby-bundler', 'build-essential']` 
-# and remove the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
-#  - name: Install ruby and rubygems and required packages
-#    apt: "name={{ item }} state=present" - не рекомендовано для использования, вместо этого рекомендовано использовать name: ['ruby-full', 'ruby-bundler', 'build-essential']`
-#    with_items:
-#      - ruby-full
-#      - ruby-bundler
-#      - build-essential
+  roles:
+    - app
